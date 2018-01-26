@@ -310,6 +310,14 @@ public class Pixel
     updatePicture(alpha, getRed(), getGreen(), getBlue());
   } 
   
+  public boolean isTransparent() {
+	  boolean isTransparent = false;
+	  if (getAlpha() == 0 && getRed() == 0 && getGreen() == 0 && getBlue() == 0) {
+		  isTransparent = true;
+	  }
+	  return isTransparent;
+  }
+  
   /**
   * Method to get the distance between this pixel's color and the passed color
   * @param testColor the color to compare to

@@ -173,6 +173,29 @@ public class Picture extends SimplePicture
       }
     }   
   }
+  
+  public void randFilter(int startRow, int startCol) {
+	  Pixel fromPixel = null;
+	  Pixel toPixel= null;
+	  Picture rand = new Picture("rand.png");
+	  Pixel [][] toPixels = this.getPixels2D();
+	  Pixel [][] fromPixels = rand.getPixels2D();
+	  int fromRow = 0;
+	  for (int toRow = startRow; fromRow < fromPixels.length &&
+			  toRow < toPixels.length; toRow++) {
+		  int fromCol = 0;
+		  for (int toCol = startCol; fromCol < fromPixels[0].length &&
+				  toCol < toPixels[0].length; toCol++) {
+			  fromPixel = fromPixels[fromRow][fromCol];
+			  toPixel = toPixels[toRow][toCol];
+			  if (!fromPixel.isTransparent()) {
+				  toPixel.setColor(fromPixel.getColor());
+			  }
+			  fromCol++;
+		  }
+		  fromRow++;
+	  }
+  }
 
   /** Method to create a collage of several pictures */
   public void createCollage()
@@ -229,5 +252,40 @@ public class Picture extends SimplePicture
     beach.zeroBlue();
     beach.explore();
   }
-  
+  public void keepOnlyBlue()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  public void keepOnlyRed()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setBlue(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  public void keepOnlyGreen()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setBlue(0);
+      }
+    }
+  }
 } // this } is the end of class Picture, put all new methods before this

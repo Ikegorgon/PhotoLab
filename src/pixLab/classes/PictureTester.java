@@ -18,6 +18,13 @@ public class PictureTester
     beach.explore();
   }
   
+  public static void testRand() {
+	  Picture sample = new Picture("beach.jpg");
+	  sample.explore();
+	  sample.randFilter(sample.getHeight()/2, sample.getWidth()/2);
+	  sample.explore();
+  }
+  
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -59,21 +66,21 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+//    testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
     //testFixUnderwater();
-    testMirrorVertical();
-    //testMirrorTemple();
+//    testMirrorVertical();
+//    testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
-    //testCollage();
+//    testCollage();
     //testCopy();
-    //testEdgeDetection();
+//    testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
@@ -81,5 +88,6 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+//	  testRand();
   }
 }
