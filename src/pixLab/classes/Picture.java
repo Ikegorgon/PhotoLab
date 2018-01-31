@@ -196,6 +196,31 @@ public class Picture extends SimplePicture
 		  fromRow++;
 	  }
   }
+  public void colorEnhance() {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (Pixel[] rowArray : pixels) {
+		  for (Pixel pixelObj : rowArray) {
+			  if (pixelObj.getBlue() > 112) {
+				  pixelObj.setBlue(255);
+			  }
+			  if (pixelObj.getRed() > 112) {
+				  pixelObj.setRed(255);
+			  }
+			  if (pixelObj.getGreen() > 112) {
+				  pixelObj.setGreen(255);
+			  }
+			  if (pixelObj.getBlue() <= 112) {
+				  pixelObj.setBlue(0);
+			  }
+			  if (pixelObj.getRed() <= 112) {
+				  pixelObj.setRed(0);
+			  }
+			  if (pixelObj.getGreen() <= 112) {
+				  pixelObj.setGreen(0);
+			  }
+		  }
+	  }
+  }
 
   /** Method to create a collage of several pictures */
   public void createCollage()

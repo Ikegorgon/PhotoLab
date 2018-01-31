@@ -24,6 +24,20 @@ public class PictureTester
 	  sample.randFilter(sample.getHeight()/2, sample.getWidth()/2);
 	  sample.explore();
   }
+  public static void testColorEnhance() {
+	  Picture sample = new Picture("beach.jpg");
+	  sample.explore();
+	  sample.colorEnhance();
+	  sample.explore();
+	  Picture sample1 = new Picture("redMotorcycle.jpg");
+	  sample1.explore();
+	  sample1.colorEnhance();
+	  sample1.explore();
+	  Picture sample2 = new Picture("moon-surface.jpg");
+	  sample2.explore();
+	  sample2.colorEnhance();
+	  sample2.explore();
+  }
   
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
@@ -89,5 +103,6 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
 //	  testRand();
+	  testColorEnhance();
   }
 }
