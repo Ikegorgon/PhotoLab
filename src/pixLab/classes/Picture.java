@@ -196,6 +196,44 @@ public class Picture extends SimplePicture
 		  fromRow++;
 	  }
   }
+  
+  public void fullFilter() {
+	  Pixel[][] pixels = this.getPixels2D();
+	  int length = pixels.length;
+	  int width = pixels[0].length;
+	  Pixel left = null;
+	  Pixel right = null;
+	  for (int row = 0; row < length; row++) {
+		  for (int col = 0; col < width / 2; col ++) {
+			  left = pixels[row][col];
+			  right = pixels[row][width - 1 - col];
+			  right.setColor(left.getColor());
+		  }
+	  }
+	  for (Pixel[] rowArray : pixels) {
+		  for (Pixel pixelObj : rowArray) {
+			  if (pixelObj.getBlue() > 112) {
+				  pixelObj.setBlue(255);
+			  }
+			  if (pixelObj.getRed() > 112) {
+				  pixelObj.setRed(255);
+			  }
+			  if (pixelObj.getGreen() > 112) {
+				  pixelObj.setGreen(255);
+			  }
+			  if (pixelObj.getBlue() <= 112) {
+				  pixelObj.setBlue(0);
+			  }
+			  if (pixelObj.getRed() <= 112) {
+				  pixelObj.setRed(0);
+			  }
+			  if (pixelObj.getGreen() <= 112) {
+				  pixelObj.setGreen(0);
+			  }
+		  }
+	  }
+  }
+  
   public void colorEnhance() {
 	  Pixel[][] pixels = this.getPixels2D();
 	  for (Pixel[] rowArray : pixels) {
