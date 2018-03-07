@@ -174,6 +174,56 @@ public class Picture extends SimplePicture
     }   
   }
   
+  public void glitchArt() {
+	  Pixel [][] pixels = this.getPixels2D();
+	  
+	  int shiftAmount = (int) (.33 * pixels[0].length);
+	  int width = pixels[0].length;
+	  
+	  for (int row = 0; row < pixels.length; row++) {
+		  Color [] currentColors = new Color[pixels[0].length];
+		  for (int col = 0; col < pixels[row].length; col++) {
+				  currentColors[col] = pixels[row][col].getColor();
+		  }
+		  for (int col = 0; col < pixels[0].length; col++) {
+			  pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
+		  }
+	  }
+	  
+	  for (int row = 0; row < pixels.length; row++) {
+		  int [] currentColors = new int[pixels[0].length];
+		  for (int col = 0; col < pixels[row].length; col++) {
+				  currentColors[col] = pixels[row][col].getRed();
+		  }
+		  for (int col = 0; col < pixels[0].length; col++) {
+			  pixels[row][col].setRed(currentColors[(col + 50) % width]);
+		  }
+	  }
+	  for (int row = 0; row < pixels.length; row++) {
+		  int [] currentColors = new int[pixels[0].length];
+		  for (int col = 0; col < pixels[row].length; col++) {
+				  currentColors[col] = pixels[row][col].getBlue();
+		  }
+		  for (int col = 0; col < pixels[0].length; col++) {
+			  pixels[row][col].setBlue(currentColors[(col + 100) % width]);
+		  }
+	  }
+  }
+  public void classFilter() {
+	  Pixel [][] pixels = this.getPixels2D();
+	  int width = pixels[0].length;
+	  int fifth = pixels.length / 5;
+	  for (int row = fifth; row < fifth * 2; row++) {
+		  Color [] currentColors = new Color[pixels[0].length];
+		  for (int col = pixels[0].length / 5; col < pixels[0].length / 5 * 2; col++) {
+			  currentColors[col] = pixels[row][col].getColor();
+		  }
+		  for (int col = pixels[0].length / 5 * 2; col < pixels[0].length / 5 * 4; col++) {
+			  pixels[row][col].setColor(currentColors[col % width]);
+		  }
+	  }
+  }
+  
   public void randFilter(int startRow, int startCol) {
 	  Pixel fromPixel = null;
 	  Pixel toPixel= null;

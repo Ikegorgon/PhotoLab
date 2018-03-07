@@ -17,7 +17,18 @@ public class PictureTester
     beach.zeroBlue();
     beach.explore();
   }
-  
+  public static void testGlitchArt() {
+	  Picture sample = new Picture("gorge.jpg");
+	  sample.explore();
+	  sample.glitchArt();
+	  sample.explore();
+  }
+  public static void testClassFilter() {
+	  Picture sample = new Picture("gorge.jpg");
+	  sample.explore();
+	  sample.classFilter();
+	  sample.explore();
+  }
   public static void testRand() {
 	  Picture sample = new Picture("beach.jpg");
 	  sample.explore();
@@ -103,6 +114,8 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
 //	  testRand();
-	  testColorEnhance();
+//	  testColorEnhance();
+//	  testGlitchArt();
+	  testClassFilter();
   }
 }
