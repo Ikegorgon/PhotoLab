@@ -1,4 +1,5 @@
 package pixLab.classes;
+import pixLab.images.*;
 import java.awt.*;
 import java.awt.font.*;
 import java.awt.geom.*;
@@ -6,6 +7,9 @@ import java.awt.image.BufferedImage;
 import java.text.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * A class that represents a picture.  This class inherits from 
@@ -211,17 +215,34 @@ public class Picture extends SimplePicture
   }
   public void classFilter() {
 	  Pixel [][] pixels = this.getPixels2D();
+	  Pixel [][] bob = new Picture("BobRoss.png").getPixels2D();
 	  int width = pixels[0].length;
 	  int fifth = pixels.length / 5;
-	  for (int row = fifth; row < fifth * 2; row++) {
+	  int shiftAmount = pixels.length/5*2;
+	  for (int row = 0; row < pixels.length; row++) {
 		  Color [] currentColors = new Color[pixels[0].length];
-		  for (int col = pixels[0].length / 5; col < pixels[0].length / 5 * 2; col++) {
-			  currentColors[col] = pixels[row][col].getColor();
+		  for (int col = 0; col < pixels[row].length; col++) {
+				  currentColors[col] = pixels[row][col].getColor();
 		  }
-		  for (int col = pixels[0].length / 5 * 2; col < pixels[0].length / 5 * 4; col++) {
-			  pixels[row][col].setColor(currentColors[col % width]);
+		  for (int col = 0; col < pixels[0].length; col++) {
+			  pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
+//			  for (int c = 0; c < currentColors.length; c++) {
+//				  pixels[row][col].setColor(currentColors[c]);
+//			  }
 		  }
 	  }
+	  for (int row = 0; row < bob.length; row++) {
+		  for (int col = 0; col < bob[0].length; col++) {
+			  pixels[row][col].setColor(bob[row][col].getColor());
+		  }
+	  }
+	  addMessage("Hello", fifth, fifth, Color.CYAN);
+  }
+  public void addMessage(String message, int xPos, int yPos, Color color) {
+	  Graphics2D graphics2d = getBufferedImage().createGraphics();
+	  graphics2d.setPaint(color);
+	  graphics2d.setFont(new Font("Times", Font.BOLD, 20));
+	  graphics2d.drawString(message, xPos, yPos);
   }
   
   public void randFilter(int startRow, int startCol) {
@@ -358,13 +379,13 @@ public class Picture extends SimplePicture
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
-  public static void main(String[] args) 
-  {
-    Picture beach = new Picture("beach.jpg");
-    beach.explore();
-    beach.zeroBlue();
-    beach.explore();
-  }
+//  public static void main(String[] args) 
+//  {
+//    Picture beach = new Picture("beach.jpg");
+//    beach.explore();
+//    beach.zeroBlue();
+//    beach.explore();
+//  }
   public void keepOnlyBlue()
   {
     Pixel[][] pixels = this.getPixels2D();
